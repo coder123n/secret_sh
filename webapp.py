@@ -1,27 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@coder123n 
-coder123n
-/
-DSW-OAuth-Example-Student
-forked from sky-adams/DSW-OAuth-Example-Student
-0
-046
- Code Pull requests 0 Actions Projects 0 Wiki Security Insights Settings
-DSW-OAuth-Example-Student/webapp.py / 
-@coder123n coder123n Update webapp.py
-d3986ea 15 minutes ago
-@coder123n@sky-adams
-93 lines (75 sloc)  3.31 KB
-  
-You're using code navigation to jump to definitions or references.
-Learn more or give us feedback
 from flask import Flask, redirect, url_for, session, request, jsonify
 from flask_oauthlib.client import OAuth
 from flask import render_template
