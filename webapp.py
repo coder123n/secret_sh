@@ -41,7 +41,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
-    return render_template('parge1.html',message='You were logged out')
+    return render_template('page1.html',message='You were logged out')
 
 @app.route('/login/authorized')#the route should match the callback URL registered with the OAuth provider
 def authorized():
