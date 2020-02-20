@@ -65,6 +65,7 @@ def authorized():
 
 @app.route('/page1')
 def renderPage1():
+    print(session)
     if 'user_data' in session:
         user_data_pprint = pprint.pformat(session['user_data'])#format the user data nicely
     else:
