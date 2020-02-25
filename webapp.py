@@ -8,9 +8,10 @@ import os
 
 app = Flask(__name__)
 
-app.debug = True #Change this to False for production
+app.debug = False #Change this to False for production
 
 app.secret_key = os.environ['SECRET_KEY'] 
+#app.secret_key = os.environ['OAUTHLIB_INSECURE_TRANSPORT'] 
 oauth = OAuth(app)
 
 github = oauth.remote_app(
@@ -36,7 +37,7 @@ def home():
 
 @app.route('/login')
 def login():   
-    return github.authorize(callback=url_for('authorized', _external=True, _scheme='https'))
+    return github.authorize(callback=url_for('authorized', _external=True, _scheme='http'))
 
 @app.route('/logout')
 def logout():
@@ -58,19 +59,22 @@ def authorized():
         except Exception as inst:
             #clear the session and give error message
             session.clear()
-            print(inst)
+            #print(inst)
             message = 'Unable to log in. Please try again.'
     return render_template('page1.html',message=message)
 
 
 @app.route('/page1')
 def renderPage1():
-    print(session)
+    #print(session)
+    secret = ""
     if 'user_data' in session:
-        user_data_pprint = pprint.pformat(session['user_data'])#format the user data nicely
+        #user_data_pprint = pprint.pformat(session['user_data'])#format the user data nicely
+        if session['user_data']['public_repos'] == 21:
+            secret = "You are special!"
     else:
-        user_data_pprint = '';
-    return render_template('page1.html',dump_user_data=user_data_pprint)
+        secret = '';
+    return render_template('page1.html',message=secret)
 
 @github.tokengetter
 def get_github_oauth_token():
