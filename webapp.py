@@ -70,7 +70,7 @@ def renderPage1():
     secret = ""
     if 'user_data' in session:
         #user_data_pprint = pprint.pformat(session['user_data'])#format the user data nicely
-        if session['user_data']['public_repos'] == 21:
+        if session['user_data']['public_repos'] >= 10:
             secret = "You are special!"
     else:
         secret = '';
